@@ -14,12 +14,10 @@ const getAllLosts = asyncHandler(async (req, res) => {
 const createNewLost = asyncHandler(async (req, res) => {
     const { u_id, lat, long, data_lost, date_found, item_id, found_item_id, type } = req.body
 
-    // Confirm data
     if (!u_id || !lat || !long || !date_lost) {
         return res.status(400).json({ message: 'All fields are required' })
     }
 
-    // Check for duplicate username
     const duplicate = await lost_locations.findOne({ u_id }).lean().exec()
 
     if (duplicate) {
