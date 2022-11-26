@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 app.use(morgan('common'));
 
-
+app.use("/lost", './lost.js')
 app.get("/", (req, res) => {
     res.send({success:true});
 });
